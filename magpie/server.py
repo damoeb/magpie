@@ -12,6 +12,7 @@ from tornado.web import Application
 from config import config_path
 from handler import urls
 
+
 class AttrDict(dict):
     def __getattr__(self, key):
         return self[key]
@@ -65,6 +66,7 @@ def make_app(config=None):
 def main():
     server = make_app()
     server.listen(options.port, options.address)
+    print('listening on ' + str(options.address) + ':' + str(options.port))
     autoreload.start()
     autoreload.watch(config_path.web)
     IOLoop.instance().start()
